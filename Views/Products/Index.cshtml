@@ -1,0 +1,32 @@
+﻿@model Task2.Models.ViewModels.ProductsViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+@*<input type="hidden" class="jCurrentUserId" value="@Model.CurrentUserId"/>*@
+<button class="btn btn-info">@Html.ActionLink("Go to Categories", "Index", "Categories", new { userId = Model.CurrentUserId })</button><br/>
+<button class="btn btn-info">@Html.ActionLink("Go to Orders", "ForUser", "Orders", new { userId = Model.CurrentUserId })</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>
+                        <button class="btn btn-info">@Html.ActionLink("Buy", "CreateOrder", "Orders", new { userId = Model.CurrentUserId, productId = product.Id })</button>
+                    </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
